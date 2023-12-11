@@ -3,11 +3,11 @@
 #include <fstream>
 
 unsigned long djb2Hash(const char *str) {
-    unsigned long hash = 5381;
+    unsigned long hash = 5381; // could be any number, hedha li 5tarou li sna3 l'algorithme
     int c;
 
     while ((c = *str++)) { // iterate until c is null ( \0 )
-        hash = ((hash << 5) + hash) + c; // hash * 33 + c
+        hash = ((hash << 5) + hash) + c; // hash * 33 + c ( djb2 Hashing Algorithm )
     }
 
     return hash;
@@ -15,11 +15,10 @@ unsigned long djb2Hash(const char *str) {
 
 bool checkIfUsernameExists(const std::string &username) {
     std::ifstream authFile("passwd.txt");
-    // Check if the file is open
     if (authFile.is_open()) {
         std::cout << "Checking if username exists... " << std::endl;
 
-        // Read and display each line in the file
+        // Read and check usernames
         std::string line;
         while (std::getline(authFile, line)) {
             std::string existingUser = line.substr(0, line.find(';'));
@@ -29,7 +28,6 @@ bool checkIfUsernameExists(const std::string &username) {
             }
         }
 
-        // Close the file
         authFile.close();
     } else {
         std::cerr << "Unable to open file" << std::endl;
@@ -45,7 +43,6 @@ void saveToPasswdFile(const std::string &username, const std::string &password) 
         // Write to the file
         authFile << username << ";" << hashValue << "\n";
 
-        // Close the file
         authFile.close();
     } else {
         std::cerr << "Error opening file." << std::endl;
@@ -68,11 +65,10 @@ void registerFunction() {
 
 bool checkUsernameAndPassword(const std::string &username, const std::string &password) {
     std::ifstream authFile("passwd.txt");
-    // Check if the file is open
     if (authFile.is_open()) {
         std::cout << "Checking if username exists... " << std::endl;
 
-        // Read and display each line in the file
+        // check username then if exists check password
         std::string line;
         while (std::getline(authFile, line)) {
             std::string existingUser = line.substr(0, line.find(';'));
@@ -86,7 +82,6 @@ bool checkUsernameAndPassword(const std::string &username, const std::string &pa
             }
         }
 
-        // Close the file
         authFile.close();
     } else {
         std::cerr << "Unable to open file" << std::endl;
