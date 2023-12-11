@@ -76,6 +76,7 @@ bool checkUsernameAndPassword(const std::string &username, const std::string &pa
                 std::string savedPassword = line.substr(line.find(';')+1, line.size());
                 std::string hashedInputPassword = std::to_string(djb2Hash(password.c_str()));
                 if (savedPassword == hashedInputPassword) {
+                    authFile.close();
                     return true;
                 }
 
