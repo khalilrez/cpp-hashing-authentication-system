@@ -30,7 +30,7 @@ bool checkIfUsernameExists(const std::string &username) {
 
         authFile.close();
     } else {
-        std::cerr << "Unable to open file" << std::endl;
+        std::cerr << "WARNING : passwords file doesn't exist yet , couldn't check username ... " << std::endl;
     }
     return true;
 }

@@ -22,6 +22,9 @@ int main() {
                 loginFunction();
                 break;
             }
+            case 0: {
+                exit(0);
+            }
             default:
                 std::cout << "Invalid choice\n";
         }
